@@ -1,0 +1,26 @@
+{
+  "name": "jest-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DonNavinS/jest-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DonNavinS/jest-challenge/issues"
+  },
+  "homepage": "https://github.com/DonNavinS/jest-challenge#readme",
+  "keywords": [],
+  "devDependencies": {
+    "jest": "^27.0.5"
+  },
+  "dependencies": {
+    "inquirer": "^8.1.1"
+  }
+}
