@@ -10,6 +10,19 @@ const HTMLContent = function(answers){
     </head>
     <body>
     <h1>${answers.Title}</h1>
+
+    <div class="container">
+        <div>
+        <h3>${answers.ManagerName}</h3>
+        <h5>ID #: ${answers.ManagerID}</h5>
+        <h5>Email: <a href="mailto:${answers.ManagerEmail}">${answers.ManagerEmail}</a></h5>
+        <h5><a href="${answers.ManagerGithub}">Github</a></h5>
+        </div>
+        
+        <div>This is div 2</div>
+
+        <div>This is the last div</div>
+    </div>
         
     </body>
     </html>

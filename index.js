@@ -6,7 +6,23 @@ const HTMLContent = require('./HTMLContent')
 const questions = [
     {name: 'Title',
     type: 'input',
+    message: 'What is your team name?'
+    },
+    {name: 'ManagerName',
+    type: 'input',
     message: 'What is your name?'
+    },
+    {name: 'ManagerID',
+    type: 'input',
+    message: 'What is your ID number?'
+    },
+    {name: 'ManagerEmail',
+    type: 'input',
+    message: 'What is your email?'
+    },
+    {name: 'ManagerGithub',
+    type: 'input',
+    message: 'What is your Github?'
     }
 ]
 

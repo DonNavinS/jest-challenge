@@ -2,3 +2,12 @@ h1 {
     color: blue;
     
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    border: black 2px solid;
+}
