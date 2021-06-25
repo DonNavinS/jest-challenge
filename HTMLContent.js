@@ -1,3 +1,4 @@
+
 const HTMLContent = function(answers){
     return `<!DOCTYPE html>
     <html lang="en">
@@ -13,28 +14,41 @@ const HTMLContent = function(answers){
 
     <div class="container">
         <div>
+        <h2>Manager</h2>
         <h3>${answers.ManagerName}</h3>
         <h5>ID #: ${answers.ManagerID}</h5>
         <h5>Email: <a href="mailto:${answers.ManagerEmail}">${answers.ManagerEmail}</a></h5>
-        <h5><a href="${answers.ManagerGithub}">Github</a></h5>
+        <h5><a href="${answers.ManagerGithub}" target="_blank">Github</a></h5>
         </div>
         
-        <div>This is div 2</div>
+        `
 
-        <div>This is the last div</div>
-    </div>
         
-    </body>
-    </html>
-  
-    
-    
-   
-    
-    
-    
-    `
+
 }
 
 
-module.exports = HTMLContent;
+const EngineerHTML = function(answers){
+    return `
+    <div>
+    <h2>Engineer</h2>
+    <h3>${answers.EngineerName}</h3>
+    <h5>ID #: ${answers.EngineerID}</h5>
+    <h5>Email: <a href="mailto:${answers.EngineerEmail}">${answers.EngineerEmail}</a></h5>
+    <h5><a href="${answers.EngineerGithub}" target="_blank">Github</a></h5>
+    </div>`
+}
+
+
+const InternHTML = function(answers){
+    return `
+    <div>
+    <h2>Intern</h2>
+    <h3>${answers.InternName}</h3>
+    <h5>ID #: ${answers.InternID}</h5>
+    <h5>Email: <a href="mailto:${answers.InternEmail}">${answers.InternEmail}</a></h5>
+    <h5><a href="${answers.InternGithub}" target="_blank">Github</a></h5>
+    </div>`
+}
+
+module.exports = {HTMLContent, EngineerHTML, InternHTML};
