@@ -90,27 +90,17 @@ const AppendHTML = function(fileName, data){
     })
 }
 
+// This is what is run when node index.js is entered into the terminal.
+// The HTML is first created with only the manager's info, and is then appended 
+//if the user chooses to add a Engineer/Intern.
 
 inquirer.prompt(questions).then(function(answers) {
     generateHTML('team-roster.html', imported.HTMLContent(answers));
 
     if (answers.ManagerGithub) {
-        inquirer.prompt(NewMember).then(function(answers){
-            if (answers.AddMember == "Add an Engineer") {
-                BuildEngineerHTML();
-            } else if (answers.AddMember == "Add an Intern"){
-                BuildInternHTML();
-            }
-    })
-    .catch((error) => {
-        if (error) {
-            console.log(error)
-        }
-    })
-}
+        NewMemberPrompt();
+    }
 })
-
-
 .catch((error) => {
     if (error){
         console.log(error)
@@ -119,11 +109,31 @@ inquirer.prompt(questions).then(function(answers) {
 
 
 
+const NewMemberPrompt = function() {
+    inquirer.prompt(NewMember).then(function(answers){
+    if (answers.AddMember == "Add an Engineer") {
+        BuildEngineerHTML();
+    } else if (answers.AddMember == "Add an Intern"){
+        BuildInternHTML();
+    }
+})
+.catch((error) => {
+if (error) {
+    console.log(error)
+}
+})
+}
+
+
+
+
+// These functions are used to begin a new inquirer, and the user input is appended to end of the existing HTML file.
 const BuildEngineerHTML = function(){
     inquirer.prompt(EngineerQuestions).then(function(answers){
         AppendHTML('team-roster.html', imported.EngineerHTML(answers));
-})
-.catch((error) => {
+
+        NewMemberPrompt();
+}).catch((error) => {
     if (error){
         console.log(error)
     }
@@ -133,14 +143,12 @@ const BuildEngineerHTML = function(){
 const BuildInternHTML = function(){
     inquirer.prompt(InternQuestions).then(function(answers){
         AppendHTML('team-roster.html', imported.InternHTML(answers));
-})
-.catch((error) => {
+
+        NewMemberPrompt();
+}).catch((error) => {
     if (error){
         console.log(error)
     }
 })
 }
 
-// const CloseHTML = function(){
-
-// 
