@@ -3,7 +3,7 @@ const inquirer = require('inquirer')
 const imported = require('./HTMLContent')
 
 
-const questions = [
+const ManagerQuestions = [
     {name: 'Title',
     type: 'input',
     message: 'What is your team name?'
@@ -94,7 +94,7 @@ const AppendHTML = function(fileName, data){
 // The HTML is first created with only the manager's info, and is then appended 
 //if the user chooses to add a Engineer/Intern.
 
-inquirer.prompt(questions).then(function(answers) {
+inquirer.prompt(ManagerQuestions).then(function(answers) {
     generateHTML('team-roster.html', imported.HTMLContent(answers));
 
     if (answers.ManagerGithub) {
@@ -108,7 +108,7 @@ inquirer.prompt(questions).then(function(answers) {
 })
 
 
-
+// Gives an additional inquirer to add team members
 const NewMemberPrompt = function() {
     inquirer.prompt(NewMember).then(function(answers){
     if (answers.AddMember == "Add an Engineer") {
