@@ -1,5 +1,5 @@
 
-const HTMLContent = function(answers){
+const HTMLContent = function(manager){
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -10,15 +10,15 @@ const HTMLContent = function(answers){
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-    <h1>${answers.Title}</h1>
+    <h1>${manager.name}</h1>
 
     <div class="container">
         <div>
         <h2>Manager</h2>
-        <h3>${answers.ManagerName}</h3>
-        <h5>ID #: ${answers.ManagerID}</h5>
-        <h5>Email: <a href="mailto:${answers.ManagerEmail}">${answers.ManagerEmail}</a></h5>
-        <h5><a href="${answers.ManagerGithub}" target="_blank">Github</a></h5>
+        <h3>${manager.name}</h3>
+        <h5>ID #: ${manager.id}</h5>
+        <h5>Email: <a href="mailto:${manager.email}">${manager.email}</a></h5>
+        <h5>${manager.officeNumber}</h5>
         </div>
         
         `
@@ -28,26 +28,26 @@ const HTMLContent = function(answers){
 }
 
 
-const EngineerHTML = function(answers){
+const EngineerHTML = function(engineer){
     return `
     <div>
     <h2>Engineer</h2>
-    <h3>${answers.EngineerName}</h3>
-    <h5>ID #: ${answers.EngineerID}</h5>
-    <h5>Email: <a href="mailto:${answers.EngineerEmail}">${answers.EngineerEmail}</a></h5>
-    <h5><a href="${answers.EngineerGithub}" target="_blank">Github</a></h5>
+    <h3>${engineer.name}</h3>
+    <h5>ID #: ${engineer.id}</h5>
+    <h5>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></h5>
+    <h5><a href="${engineer.github}" target="_blank">Github</a></h5>
     </div>`
 }
 
 
-const InternHTML = function(answers){
+const InternHTML = function(intern){
     return `
     <div>
     <h2>Intern</h2>
-    <h3>${answers.InternName}</h3>
-    <h5>ID #: ${answers.InternID}</h5>
-    <h5>Email: <a href="mailto:${answers.InternEmail}">${answers.InternEmail}</a></h5>
-    <h5><a href="${answers.InternGithub}" target="_blank">Github</a></h5>
+    <h3>${intern.name}</h3>
+    <h5>ID #: ${intern.id}</h5>
+    <h5>Email: <a href="mailto:${intern.email}">${intern.email}</a></h5>
+    <h5>${intern.school}</h5>
     </div>`
 }
 

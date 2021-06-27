@@ -1,28 +1,30 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
 const imported = require('./HTMLContent')
-
+const Manager = require('./lib/Manager')
+const Engineer = require("./lib/Engineer")
+const Intern = require("./lib/Intern")
 
 const ManagerQuestions = [
     {name: 'Title',
     type: 'input',
     message: 'What is your team name?'
     },
-    {name: 'ManagerName',
+    {name: "Name",
     type: 'input',
-    message: 'What is your name?'
+    message: "What is the manager's name?"
     },
-    {name: 'ManagerID',
-    type: 'input',
-    message: 'What is your ID number?'
+    {name: "Id",
+    type: "input",
+    message: "What is the manager's ID number?"
     },
-    {name: 'ManagerEmail',
-    type: 'input',
-    message: 'What is your email?'
+    {name: "Email",
+    type: "input",
+    message: "What is the manager's email?"
     },
-    {name: 'ManagerGithub',
-    type: 'input',
-    message: 'What is your Github?'
+    {name: "OfficeNumber",
+    type: "input",
+    message: "What is the manager's Office Number?"
     }
 ]
 
@@ -35,19 +37,19 @@ const NewMember = [
 ]
 
 const EngineerQuestions = [
-    {name: "EngineerName",
+    {name: "Name",
     type: "input",
     message: "What is the engineer's name?"
     },
-    {name: "EngineerID",
+    {name: "Id",
     type: "input",
     message: "What is the engineer's ID number?"
     },
-    {name: "EngineerEmail",
+    {name: "Email",
     type: "input",
     message: "What is the engineer's email?"
     },
-    {name: "EngineerGithub",
+    {name: "Github",
     type: "input",
     message: "What is the engineer's Github?"
     }
@@ -55,21 +57,21 @@ const EngineerQuestions = [
 
 
 const InternQuestions = [
-    {name: "InternName",
+    {name: "Name",
     type: "input",
-    message: "What is the Intern's name?"
+    message: "What is the intern's name?"
     },
-    {name: "InternID",
+    {name: "ID",
     type: "input",
-    message: "What is the Intern's ID number?"
+    message: "What is the intern's ID number?"
     },
-    {name: "InternEmail",
+    {name: "Email",
     type: "input",
-    message: "What is the Intern's email?"
+    message: "What is the intern's email?"
     },
-    {name: "InternGithub",
+    {name: "School",
     type: "input",
-    message: "What is the Intern's Github?"
+    message: "What school does the intern attend?"
     }
 ]
 
@@ -95,9 +97,10 @@ const AppendHTML = function(fileName, data){
 //if the user chooses to add a Engineer/Intern.
 
 inquirer.prompt(ManagerQuestions).then(function(answers) {
-    generateHTML('team-roster.html', imported.HTMLContent(answers));
+    const manager = new Manager(answers.Name, answers.Id, answers.Email, answers.OfficeNumber);
+    generateHTML('team-roster.html', imported.HTMLContent(manager));
 
-    if (answers.ManagerGithub) {
+    if (answers.OfficeNumber) {
         NewMemberPrompt();
     }
 })
@@ -130,7 +133,8 @@ if (error) {
 // These functions are used to begin a new inquirer, and the user input is appended to end of the existing HTML file.
 const BuildEngineerHTML = function(){
     inquirer.prompt(EngineerQuestions).then(function(answers){
-        AppendHTML('team-roster.html', imported.EngineerHTML(answers));
+        const engineer = new Engineer(answers.Name, answers.Id, answers.Email, answers.Github)
+        AppendHTML('team-roster.html', imported.EngineerHTML(engineer));
 
         NewMemberPrompt();
 }).catch((error) => {
@@ -142,7 +146,8 @@ const BuildEngineerHTML = function(){
 
 const BuildInternHTML = function(){
     inquirer.prompt(InternQuestions).then(function(answers){
-        AppendHTML('team-roster.html', imported.InternHTML(answers));
+        const intern = new Intern(answers.Name, answers.Id, answers.Email, answers.School)
+        AppendHTML('team-roster.html', imported.InternHTML(intern));
 
         NewMemberPrompt();
 }).catch((error) => {
