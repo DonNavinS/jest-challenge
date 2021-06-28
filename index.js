@@ -5,6 +5,8 @@ const Manager = require('./lib/Manager')
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 
+
+// Sets of questions that are passed into inquirer.prompt()
 const ManagerQuestions = [
     {name: "Name",
     type: 'input',
@@ -71,7 +73,7 @@ const InternQuestions = [
     }
 ]
 
-
+// Used to create HTML file
 const generateHTML = function(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) {
@@ -80,6 +82,7 @@ const generateHTML = function(fileName, data) {
     })
 }  
 
+// Appends content to created HTML file when additional team members are added 
 const AppendHTML = function(fileName, data){
     fs.appendFile(fileName, data, (err) => {
         if (err) {
@@ -94,7 +97,7 @@ const AppendHTML = function(fileName, data){
 
 inquirer.prompt(ManagerQuestions).then(function(answers) {
     const manager = new Manager(answers.Name, answers.Id, answers.Email, answers.OfficeNumber);
-    generateHTML('team-roster.html', imported.HTMLContent(manager));
+    generateHTML('index.html', imported.HTMLContent(manager));
 
     if (answers.OfficeNumber) {
         NewMemberPrompt();
@@ -130,7 +133,7 @@ if (error) {
 const BuildEngineerHTML = function(){
     inquirer.prompt(EngineerQuestions).then(function(answers){
         const engineer = new Engineer(answers.Name, answers.Id, answers.Email, answers.Github)
-        AppendHTML('team-roster.html', imported.EngineerHTML(engineer));
+        AppendHTML('index.html', imported.EngineerHTML(engineer));
 
         NewMemberPrompt();
 }).catch((error) => {
@@ -143,7 +146,7 @@ const BuildEngineerHTML = function(){
 const BuildInternHTML = function(){
     inquirer.prompt(InternQuestions).then(function(answers){
         const intern = new Intern(answers.Name, answers.Id, answers.Email, answers.School)
-        AppendHTML('team-roster.html', imported.InternHTML(intern));
+        AppendHTML('index.html', imported.InternHTML(intern));
 
         NewMemberPrompt();
 }).catch((error) => {
