@@ -6,10 +6,6 @@ const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 
 const ManagerQuestions = [
-    {name: 'Title',
-    type: 'input',
-    message: 'What is your team name?'
-    },
     {name: "Name",
     type: 'input',
     message: "What is the manager's name?"
@@ -61,7 +57,7 @@ const InternQuestions = [
     type: "input",
     message: "What is the intern's name?"
     },
-    {name: "ID",
+    {name: "Id",
     type: "input",
     message: "What is the intern's ID number?"
     },
